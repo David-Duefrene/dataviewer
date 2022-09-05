@@ -6,17 +6,17 @@ import * as d3 from 'd3';
 
 // import './ChartBox.css';
 
-export interface ChartData {
+interface ChartData {
 	date: number;
 	value: number;
 }
 
-export interface ChartBoxData {
+interface ChartBoxData {
 	data: ChartData[];
 	name: string;
 }
 
-export default interface ChartBoxProps {
+interface ChartBoxProps {
 	data: ChartBoxData[]
 }
 
