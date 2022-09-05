@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import LineChart from './LineChart/LineChart';
 import * as d3 from 'd3';
 
-import { ChartBoxProps, ChartData } from './Interfaces';
+import ChartBoxProps, { ChartData } from './Interfaces';
 // import './ChartBox.css';
 
 /**

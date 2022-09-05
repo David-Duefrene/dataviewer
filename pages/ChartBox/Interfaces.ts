@@ -8,6 +8,6 @@ export interface ChartBoxData {
 	name: string;
 }
 
-export interface ChartBoxProps {
+export default interface ChartBoxProps {
 	data: ChartBoxData[]
 }
