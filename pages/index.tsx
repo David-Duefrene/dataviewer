@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import data from './data.json';
-import ChartBox from './ChartBox/ChartBox';
+import ChartBox from '../Components/ChartBox/ChartBox';
 import styles from '../styles/Home.module.css'
 
 interface ChartData {
