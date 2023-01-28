@@ -64,10 +64,10 @@ const ChartBox = ({ data }: ChartBoxProps) => {
     }, [data, dimensions, svgRef]);
 
     return (
-		<div>
+		<article>
 			<h1>Colorado Population & Projected Growth</h1>
 			<svg className='Chart' ref={svgRef} width={width + 120} height={height * 1.1} />
-		</div>
+		</article>
 	);
 };
 

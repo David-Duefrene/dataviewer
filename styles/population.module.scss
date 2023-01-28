@@ -1,0 +1,24 @@
+.SelectionList {
+	list-style-type: none;
+	overflow-y: scroll;
+	height: 95vh;
+	width: 100%;
+}
+
+.SidePanel {
+	width: 10%;
+	margin-right: 3%;
+}
+
+.SelectionButton {
+	width: 100%;
+	background-color: var(--alt-color);
+	color: var(--text-color);
+	font-weight: bold;
+	cursor: pointer;
+
+    &:hover, &.Active {
+        background-color: var(--text-color);
+        color: var(--bg-color);
+    }
+}
