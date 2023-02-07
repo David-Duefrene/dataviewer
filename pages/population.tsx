@@ -6,9 +6,14 @@ import ChartBox from '../Components/ChartBox/ChartBox'
 import clientPromise from '../util/mongoClient'
 import styles from '../styles/population.module.scss'
 
+interface PopData {
+	year: number;
+	totalPopulation: number;
+}
+
 interface ChartData {
-	date: number;
-	value: number;
+    date: number;
+    value: number;
 }
 
 export const getServerSideProps = async () => {
@@ -34,7 +39,7 @@ export const getServerSideProps = async () => {
 }
 
 interface HomeProps {
-    countyJSON: Record<string, ChartData[]>;
+    countyJSON: Record<string, PopData[]>;
 }
 
 
