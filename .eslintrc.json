@@ -1,0 +1,15 @@
+{
+    "env": {
+		"browser": true,
+		"es2021": true
+	},
+    "extends": [
+        "next/core-web-vitals",
+        "eslint-config-vigilant-octo-train",
+		"eslint:recommended",
+		"plugin:react/recommended"
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": 0
+    }
+}
