@@ -89,7 +89,7 @@ const Population = ({ countyJSON }: HomeProps) => {
                 <aside className={styles.SidePanel}>
                     <ul className={styles.SelectionList}>{countyList}</ul>
                 </aside>
-                <ChartBox data={dataSets} />
+                <ChartBox data={dataSets} title='Colorado Population & Projected Growth' />
             </main>
         </>
     )

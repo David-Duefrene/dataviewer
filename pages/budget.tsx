@@ -2,14 +2,30 @@ import Head from 'next/head'
 
 import { useState } from 'react'
 
-import ChartBox, { ChartData } from '../Components/ChartBox/ChartBox'
+import ChartBox from '../Components/ChartBox/ChartBox'
 // import clientPromise from '../util/mongoClient'
 import data from './budget.json'
 import styles from '../styles/population.module.scss'
 
 const Budget = () => {
     const [selection, setSelection] = useState('cabinet_list')
-    const [dataSet, setDataSet]: [ChartData, any] = useState(data[selection])
+    const [subSelection, setSubSelection] = useState('total')
+    const [dataSet, setDataSet] = useState(data[selection])
+
+    const selectionList = Object.keys(data).map(entry => <option value={entry}>{entry}</option>)
+
+    const subSelectionList = Object.keys(dataSet[1]).map(entry => {
+        return (
+            <li key={entry}>
+                <button
+                    className={`${styles.SelectionButton} ${subSelection === entry ? styles.Active : ''}`}
+                    onClick={() => setSubSelection(entry) }
+                >
+                    {entry}
+                </button>
+            </li>
+        )
+    })
 
     const chartData = [];
     for (let index = 0; index < 12; index++) {
@@ -23,7 +39,7 @@ const Budget = () => {
         } else {
             console.log('Date: ', new Date(`2020-${day}-01`))
             chartData.push({
-                value: dataSet[index + 1]["Department of Agriculture (B)"],
+                value: dataSet[index + 1][subSelection],
                 date: `2020-${day}-01`,
             });
         }
@@ -31,7 +47,26 @@ const Budget = () => {
 
     console.log('chartData: ', chartData)
     return (
-        <ChartBox data={[{ data: chartData, name: selection}]} />
+        <>
+            <Head>
+                <title>Budget Charts</title>
+                <meta name="Population chart for Colorado" content="generated from data.colorado.gov" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <main>
+                <aside className={styles.SidePanel}>
+                    <select value={selection} onChange={(e) => {
+                        setSelection(e.target.value)
+                        setSubSelection('total')
+                        setDataSet(data[selection])
+                    }} >
+                        {selectionList}
+                    </select>
+                    <ul className={styles.SelectionList}>{subSelectionList}</ul>
+                </aside>
+                <ChartBox data={[{ data: chartData, name: selection}]} title={`Colorado's ${selection} Budget`} />
+            </main>
+        </>
     )
 
 }

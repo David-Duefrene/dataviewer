@@ -17,14 +17,15 @@ interface ChartBoxData {
 }
 
 interface ChartBoxProps {
-	data: ChartBoxData[]
+	data: ChartBoxData[],
+    title: string
 }
 
 
 /**
  *  ChartBox is a React wrapper for LineChart.
  */
-const ChartBox = ({ data }: ChartBoxProps) => {
+const ChartBox = ({ data, title }: ChartBoxProps) => {
     const svgRef = React.useRef(null);
 
     /**
@@ -65,7 +66,7 @@ const ChartBox = ({ data }: ChartBoxProps) => {
 
     return (
 		<article>
-			<h1>Colorado Population & Projected Growth</h1>
+            <h1>{title}</h1>
 			<svg className='Chart' ref={svgRef} width={width + 120} height={height * 1.1} />
 		</article>
 	);
