@@ -4,7 +4,7 @@ const LineChart = ({ data, dimensions, svgRef, min, max }) => {
     // const { width = null, height = null } = dimensions;
 	const width = 1500;
 	const height = 750;
-    const parseDate = d3.timeParse('%Y');
+    const parseDate = d3.timeParse('%Y-%m-%d');
     const xScale = d3.scaleTime()
         .domain(d3.extent(data[0].data, (d) => parseDate(d.date)))
         .range([0, width]);

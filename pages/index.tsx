@@ -10,7 +10,10 @@ interface ChartData {
 }
 
 const Home: NextPage = () => {
-	const charts = [ <Link className={styles.Link} href='/population'>Population</Link> ];
+	const charts = [
+    <Link className={styles.Link} href='/population'>Population</Link>,
+    <Link className={styles.Link} href='/budget'>Budget</Link>,
+]
 
   return (
     <>

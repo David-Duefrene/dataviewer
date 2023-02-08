@@ -11,11 +11,6 @@ interface PopData {
 	totalPopulation: number;
 }
 
-interface ChartData {
-    date: number;
-    value: number;
-}
-
 export const getServerSideProps = async () => {
     try {
         const client = await clientPromise
@@ -43,7 +38,7 @@ interface HomeProps {
 }
 
 
-const Home = ({ countyJSON }: HomeProps) => {
+const Population = ({ countyJSON }: HomeProps) => {
 	const [county, setCounty] = useState(['Denver', 'El Paso']);
 
 	const countyList = Object.keys(countyJSON).map(entry => {
@@ -74,14 +69,14 @@ const Home = ({ countyJSON }: HomeProps) => {
         // @ts-ignore
         for (const dataPoint of countyJSON[entry]) {
 			newData.push({
-				date: dataPoint.year,
+				date: `${dataPoint.year}-01-01`,
 				value: dataPoint.totalPopulation
 			});
 		};
-		newData.sort((a: ChartData, b: ChartData) => a.date - b.date);
+		newData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 		dataSets.push({data: newData, name: entry});
 	});
-
+    console.log('pop data: ', dataSets)
     return (
         <>
             <Head>
@@ -100,4 +95,4 @@ const Home = ({ countyJSON }: HomeProps) => {
     )
 }
 
-export default Home
+export default Population

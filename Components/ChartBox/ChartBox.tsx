@@ -6,8 +6,8 @@ import * as d3 from 'd3';
 
 // import './ChartBox.css';
 
-interface ChartData {
-	date: number;
+export interface ChartData {
+	date: string;
 	value: number;
 }
 
@@ -53,7 +53,7 @@ const ChartBox = ({ data }: ChartBoxProps) => {
 		let max = 0;
 
 		for(const county of data) {
-			const testMin = d3.min(county.data, (d: ChartData) => d.value) || Number.MAX_SAFE_INTEGER;
+			const testMin = d3.min(county.data, (d: ChartData) => {console.log(d); return d.value}) || Number.MAX_SAFE_INTEGER;
 			const testMax = d3.max(county.data, (d: ChartData) => d.value) || max;
 
 			if (testMin < min) { min = testMin; }
