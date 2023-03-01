@@ -1,42 +1,24 @@
 import Head from 'next/head'
+import useSWR from 'swr'
 
 import { useState } from 'react'
 
 import ChartBox from '../Components/ChartBox/ChartBox'
-import clientPromise from '../util/mongoClient'
 import styles from '../styles/population.module.scss'
 
-export const getServerSideProps = async () => {
-	try {
-		const client = await clientPromise
-		const db = client.db('DataViewer')
+const YEARS = [ 2015, 2016, 2017, 2018, 2019, 2020, 2021 ]
+const CATEGORIES = [ 'cabinet_list', 'department_list', 'grand_totals', 'fund_list', 'fund_category_list' ]
 
-		const dataSet = await db
-			.collection('Budget')
-			.find({ year: 2021 })
-			.toArray()
-		const json = JSON.parse(JSON.stringify(dataSet))[0]
-		delete json._id
-
-		return {
-			props: { data: json },
-		}
-	} catch (e) {
-		console.error(e)
-		throw new Error('Failed to connect to database')
-	}
-}
-
-type Props = {
-	data: Record<string, any>;
-}
-
-const Budget = ({ data }: Props) => {
+const Budget = () => {
+	const [ year, setYear ] = useState(2021)
+	const { data, error, isLoading } = useSWR(`/api/getBudget/${year}`, (url) => fetch(url).then((res) => res.json()))
 	const [ selection, setSelection ] = useState('cabinet_list')
 	const [ subSelection, setSubSelection ] = useState('total')
-	const [ dataSet, setDataSet ] = useState(data[selection])
 
-	const selectionList = Object.keys(data).map((entry) => <option value={entry}>{entry}</option>)
+	if (isLoading) return <div>Loading...</div>
+	if (error) return <div>Error: {error.message}</div>
+
+	const dataSet = data[selection]
 
 	const subSelectionList = Object.keys(dataSet[1]).map((entry) => {
 		return (
@@ -58,12 +40,12 @@ const Budget = ({ data }: Props) => {
 		if (selection === '') {
 			chartData.push({
 				value: dataSet[index + 1].total,
-				date: `2020-${day}-01`,
+				date: `${year}-${day}-01`,
 			})
 		} else {
 			chartData.push({
 				value: dataSet[index + 1][subSelection],
-				date: `2020-${day}-01`,
+				date: `${year}-${day}-01`,
 			})
 		}
 	}
@@ -72,7 +54,7 @@ const Budget = ({ data }: Props) => {
 		<>
 			<Head>
 				<title>Budget Charts</title>
-				<meta name='Population chart for Colorado' content='generated from data.colorado.gov' />
+				<meta name='Budget chart for Colorado' content='generated from data.colorado.gov' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main>
@@ -80,9 +62,13 @@ const Budget = ({ data }: Props) => {
 					<select value={selection} onChange={(e) => {
 						setSelection(e.target.value)
 						setSubSelection('total')
-						setDataSet(data[selection])
 					}} >
-						{selectionList}
+						{CATEGORIES.map((category) => <option key={category} value={category}>{category}</option>)}
+					</select>
+					<select value={year} onChange={(e) => {
+						setYear(parseInt(e.target.value))
+					}}>
+						{YEARS.map((year) => <option key={year} value={year}>{year}</option>)}
 					</select>
 					<ul className={styles.SelectionList}>{subSelectionList}</ul>
 				</aside>
