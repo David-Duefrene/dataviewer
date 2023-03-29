@@ -7,25 +7,33 @@ import ChartBox from '../Components/ChartBox/ChartBox'
 import styles from '../styles/population.module.scss'
 
 const YEARS = [ 2015, 2016, 2017, 2018, 2019, 2020, 2021 ]
-const CATEGORIES = [ 'cabinet_list', 'department_list', 'grand_totals', 'fund_list', 'fund_category_list' ]
+const CATEGORIES = [ 'cabinet_list', 'department_list', /*'grand_totals',*/ 'fund_list', 'fund_category_list' ]
 
 const Budget = () => {
 	const [ year, setYear ] = useState(2021)
 	const { data, error, isLoading } = useSWR(`/api/getBudget/${year}`, (url) => fetch(url).then((res) => res.json()))
 	const [ selection, setSelection ] = useState('cabinet_list')
-	const [ subSelection, setSubSelection ] = useState('total')
+	const [ subSelection, setSubSelection ] = useState([ 'total' ])
 
 	if (isLoading) return <div>Loading...</div>
 	if (error) return <div>Error: {error.message}</div>
 
-	const dataSet = data[selection]
+	const dataSet = [ data[selection] ]
 
-	const subSelectionList = Object.keys(dataSet[1]).map((entry) => {
+	const subSelectionList = Object.keys(dataSet[0][1]).map((entry) => {
 		return (
 			<li key={entry}>
 				<button
-					className={`${styles.SelectionButton} ${subSelection === entry ? styles.Active : ''}`}
-					onClick={() => setSubSelection(entry) }
+					className={`${styles.SelectionButton} ${subSelection.includes(entry) ? styles.Active : ''}`}
+					onClick={() => {
+						if (subSelection.includes(entry)) {
+							if (subSelection.length > 1) {
+								setSubSelection(subSelection.filter((c) => c !== entry))
+							}
+							return
+						}
+						setSubSelection([ ...subSelection, entry ])
+					}}
 				>
 					{entry}
 				</button>
@@ -33,22 +41,19 @@ const Budget = () => {
 		)
 	})
 
-	const chartData = []
-	for (let index = 0; index < 12; index++) {
-		// Pads 0 if less than 10, ex. 01, 02, 03
-		const day = index < 9 ? `0${index + 1}` : index + 1
-		if (selection === '') {
-			chartData.push({
-				value: dataSet[index + 1].total,
-				date: `${year}-${day}-01`,
-			})
-		} else {
-			chartData.push({
-				value: dataSet[index + 1][subSelection],
+	const chartData: { data: { value: any; date: string }[]; name: string }[] = []
+	subSelection.forEach((sub) => {
+		const data = []
+		for (let index = 0; index < 12; index++) {
+			// Pads 0 if less than 10, ex. 01, 02, 03
+			const day = index < 9 ? `0${index + 1}` : index + 1
+			data.push({
+				value: dataSet[0][index + 1][sub],
 				date: `${year}-${day}-01`,
 			})
 		}
-	}
+		chartData.push({ data, name: sub })
+	})
 
 	return (
 		<>
@@ -61,7 +66,7 @@ const Budget = () => {
 				<aside className={styles.SidePanel}>
 					<select value={selection} onChange={(e) => {
 						setSelection(e.target.value)
-						setSubSelection('total')
+						setSubSelection([ 'total' ])
 					}} >
 						{CATEGORIES.map((category) => <option key={category} value={category}>{category}</option>)}
 					</select>
@@ -72,7 +77,7 @@ const Budget = () => {
 					</select>
 					<ul className={styles.SelectionList}>{subSelectionList}</ul>
 				</aside>
-				<ChartBox data={[ { data: chartData, name: selection } ]} title={`Colorado's ${selection} Budget`} />
+				<ChartBox data={chartData} title={`Colorado's ${selection} Budget`} />
 			</main>
 		</>
 	)

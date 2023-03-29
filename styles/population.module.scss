@@ -1,13 +1,21 @@
 .SelectionList {
 	list-style-type: none;
 	overflow-y: scroll;
-	height: 95vh;
+	height: 90%;
 	width: 100%;
+	padding: 0;
+	li :not(:last-child) {
+		margin: 0;
+		padding: 0;
+	}
 }
 
 .SidePanel {
 	width: 10%;
+	height: 95vh;
 	margin-right: 3%;
+	display: flex;
+	flex-direction: column;
 }
 
 .SelectionButton {
@@ -16,7 +24,7 @@
 	color: var(--text-color);
 	font-weight: bold;
 	cursor: pointer;
-
+	min-height: 2em;
     &:hover, &.Active {
         background-color: var(--text-color);
         color: var(--bg-color);
