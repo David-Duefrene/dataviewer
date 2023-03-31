@@ -4,7 +4,7 @@ import useSWR from 'swr'
 import { useState } from 'react'
 
 import ChartBox from '../Components/ChartBox/ChartBox'
-import styles from '../styles/population.module.scss'
+import styles from '../styles/controlPanel.module.scss'
 
 const YEARS = [ 2015, 2016, 2017, 2018, 2019, 2020, 2021 ]
 const CATEGORIES = [ 'cabinet_list', 'department_list', /*'grand_totals',*/ 'fund_list', 'fund_category_list' ]

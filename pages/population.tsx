@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import ChartBox from '../Components/ChartBox/ChartBox'
 import clientPromise from '../util/mongoClient'
-import styles from '../styles/population.module.scss'
+import styles from '../styles/controlPanel.module.scss'
 
 interface PopData {
 	year: number;
