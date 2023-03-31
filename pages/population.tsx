@@ -27,6 +27,7 @@ export const getServerSideProps = async () => {
 			props: { countyJSON: json },
 		}
 	} catch (e) {
+		// eslint-disable-next-line no-console
 		console.error(e)
 		throw new Error('Failed to connect to database')
 	}
