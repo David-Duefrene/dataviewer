@@ -1,23 +1,23 @@
+.SidePanel
+	height: 95vh
+	display: flex
+	box-shadow: 0px 0px 10px var(--alt-color)
+	flex-direction: column
+	background-color: pinkvar(--glass)
+
 .SelectionList
+	background-color: var(--glass)
 	list-style-type: none
 	overflow-y: scroll
 	height: 90%
 	width: 100%
 	padding: 0
 
-	li :not(:last-child)
-		margin: 0
-		padding: 0
+	li:first-child > .SelectionButton
+		border-radius: 10px 10px 0 0
 
-
-
-.SidePanel
-	width: 10%
-	height: 95vh
-	margin-right: 3%
-	display: flex
-	flex-direction: column
-
+	li:last-child > .SelectionButton
+		border-radius: 0 0 10px 10px
 
 .SelectionButton
 	width: 100%
@@ -31,4 +31,7 @@
 		background-image: linear-gradient(45deg, var(--alt-color), var(--bg-color) 95%)
 		color: var(--line-color-6)
 
-
+.Dropdown
+	position: relative
+	display: inline-block
+	min-height: 3em

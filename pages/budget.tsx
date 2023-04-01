@@ -64,13 +64,13 @@ const Budget = () => {
 			</Head>
 			<main>
 				<aside className={styles.SidePanel}>
-					<select value={selection} onChange={(e) => {
+					<select className={styles.Dropdown} value={selection} onChange={(e) => {
 						setSelection(e.target.value)
 						setSubSelection([ 'total' ])
 					}} >
 						{CATEGORIES.map((category) => <option key={category} value={category}>{category}</option>)}
 					</select>
-					<select value={year} onChange={(e) => {
+					<select className={styles.Dropdown} value={year} onChange={(e) => {
 						setYear(parseInt(e.target.value))
 					}}>
 						{YEARS.map((year) => <option key={year} value={year}>{year}</option>)}

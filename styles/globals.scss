@@ -13,7 +13,6 @@ html, body {
 	text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 
-    padding: 0 2rem;
 	margin: 0;
 	max-width: 100%;
 	height: 99vh;
@@ -21,6 +20,7 @@ html, body {
 	--alt-color: grey;
 	--text-color: white;
 	--bg-color: #242424;
+	--glass: rgba(0, 0, 0, 0);
 
     --line-color-0: #ff0000;
 	--line-color-1: #4400ff;
