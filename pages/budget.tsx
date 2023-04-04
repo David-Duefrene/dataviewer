@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 import ChartBox from '../Components/ChartBox/ChartBox'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
+import Dropdown from '../Components/UI/ControlPanel/Dropdown/Dropdown'
 
 import styles from '../styles/controlPanel.module.sass'
 
@@ -45,17 +46,8 @@ const Budget = () => {
 			</Head>
 			<main>
 				<aside className={styles.SidePanel}>
-					<select className={styles.Dropdown} value={selection} onChange={(e) => {
-						setSelection(e.target.value)
-						setSubSelection([ 'total' ])
-					}} >
-						{CATEGORIES.map((category) => <option key={category} value={category}>{category}</option>)}
-					</select>
-					<select className={styles.Dropdown} value={year} onChange={(e) => {
-						setYear(parseInt(e.target.value))
-					}}>
-						{YEARS.map((year) => <option key={year} value={year}>{year}</option>)}
-					</select>
+					<Dropdown list={YEARS} selected={year} setSelected={setYear} />
+					<Dropdown list={CATEGORIES} selected={selection} setSelected={setSelection} />
 					<SelectionList
 						list={Object.keys(dataSet[0][1])}
 						selected={subSelection}
