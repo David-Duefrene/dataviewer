@@ -4,10 +4,9 @@ import useSWR from 'swr'
 import { useState } from 'react'
 
 import ChartBox from '../Components/ChartBox/ChartBox'
+import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
 import Dropdown from '../Components/UI/ControlPanel/Dropdown/Dropdown'
-
-import styles from '../styles/controlPanel.module.sass'
 
 const YEARS = [ 2015, 2016, 2017, 2018, 2019, 2020, 2021 ]
 const CATEGORIES = [ 'cabinet_list', 'department_list', /*'grand_totals',*/ 'fund_list', 'fund_category_list' ]
@@ -45,7 +44,7 @@ const Budget = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main>
-				<aside className={styles.SidePanel}>
+				<ControlPanel>
 					<Dropdown list={YEARS} selected={year} setSelected={setYear} />
 					<Dropdown list={CATEGORIES} selected={selection} setSelected={setSelection} />
 					<SelectionList
@@ -53,7 +52,7 @@ const Budget = () => {
 						selected={subSelection}
 						setSelected={setSubSelection}
 					/>
-				</aside>
+				</ControlPanel>
 				<ChartBox data={chartData} title={`Colorado's ${selection} Budget`} />
 			</main>
 		</>
