@@ -2,8 +2,11 @@ import Head from 'next/head'
 
 import { useState } from 'react'
 
-import ChartBox from '../Components/ChartBox/ChartBox'
 import clientPromise from '../util/mongoClient'
+
+import ChartBox from '../Components/ChartBox/ChartBox'
+import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
+
 import styles from '../styles/controlPanel.module.sass'
 
 interface PopData {
@@ -40,32 +43,10 @@ interface HomeProps {
 const Population = ({ countyJSON }: HomeProps) => {
 	const [ county, setCounty ] = useState([ 'Denver', 'El Paso' ])
 
-	const countyList = Object.keys(countyJSON).map((entry) => {
-		return (
-			<li key={entry}>
-				<button
-					className={ `${styles.SelectionButton} ${county.includes(entry) ? styles.Active : ''}` }
-					onClick={() => {
-						if (county.includes(entry)) {
-							if (county.length > 1) {
-								setCounty(county.filter((c) => c !== entry))
-							}
-							return
-						}
-						setCounty([ ...county, entry ])
-					}}
-				>
-					{entry}
-				</button>
-			</li>
-		)
-	})
-
-	const dataSets: any = []
+	const dataSets: { data: { date: string, value: number}[], name: string}[] = []
 
 	county.forEach((entry) => {
 		const newData = []
-		// @ts-ignore
 		for (const dataPoint of countyJSON[entry]) {
 			newData.push({
 				date: `${dataPoint.year}-01-01`,
@@ -86,7 +67,7 @@ const Population = ({ countyJSON }: HomeProps) => {
 
 			<main className={styles.App}>
 				<aside className={styles.SidePanel}>
-					<ul className={styles.SelectionList}>{countyList}</ul>
+					<SelectionList list={Object.keys(countyJSON)} selected={county} setSelected={setCounty} />
 				</aside>
 				<ChartBox data={dataSets} title='Colorado Population & Projected Growth' />
 			</main>

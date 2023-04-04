@@ -4,6 +4,8 @@ import useSWR from 'swr'
 import { useState } from 'react'
 
 import ChartBox from '../Components/ChartBox/ChartBox'
+import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
+
 import styles from '../styles/controlPanel.module.sass'
 
 const YEARS = [ 2015, 2016, 2017, 2018, 2019, 2020, 2021 ]
@@ -20,28 +22,7 @@ const Budget = () => {
 
 	const dataSet = [ data[selection] ]
 
-	const subSelectionList = Object.keys(dataSet[0][1]).map((entry) => {
-		return (
-			<li key={entry}>
-				<button
-					className={`${styles.SelectionButton} ${subSelection.includes(entry) ? styles.Active : ''}`}
-					onClick={() => {
-						if (subSelection.includes(entry)) {
-							if (subSelection.length > 1) {
-								setSubSelection(subSelection.filter((c) => c !== entry))
-							}
-							return
-						}
-						setSubSelection([ ...subSelection, entry ])
-					}}
-				>
-					{entry}
-				</button>
-			</li>
-		)
-	})
-
-	const chartData: { data: { value: any; date: string }[]; name: string }[] = []
+	const chartData: { data: { date: string, value: number}[], name: string}[] = []
 	subSelection.forEach((sub) => {
 		const data = []
 		for (let index = 0; index < 12; index++) {
@@ -75,7 +56,11 @@ const Budget = () => {
 					}}>
 						{YEARS.map((year) => <option key={year} value={year}>{year}</option>)}
 					</select>
-					<ul className={styles.SelectionList}>{subSelectionList}</ul>
+					<SelectionList
+						list={Object.keys(dataSet[0][1])}
+						selected={subSelection}
+						setSelected={setSubSelection}
+					/>
 				</aside>
 				<ChartBox data={chartData} title={`Colorado's ${selection} Budget`} />
 			</main>
