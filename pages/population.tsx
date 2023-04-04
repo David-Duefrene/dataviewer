@@ -4,10 +4,9 @@ import { useState } from 'react'
 
 import clientPromise from '../util/mongoClient'
 
+import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
 import ChartBox from '../Components/ChartBox/ChartBox'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
-
-import styles from '../styles/controlPanel.module.sass'
 
 interface PopData {
 	year: number;
@@ -65,10 +64,10 @@ const Population = ({ countyJSON }: HomeProps) => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main className={styles.App}>
-				<aside className={styles.SidePanel}>
+			<main>
+				<ControlPanel>
 					<SelectionList list={Object.keys(countyJSON)} selected={county} setSelected={setCounty} />
-				</aside>
+				</ControlPanel>
 				<ChartBox data={dataSets} title='Colorado Population & Projected Growth' />
 			</main>
 		</>
