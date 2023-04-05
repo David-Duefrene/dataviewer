@@ -9,8 +9,9 @@ export interface ChartData {
 }
 
 interface ChartBoxData {
-	data: ChartData[];
-	name: string;
+	data: ChartData[]
+	name: string
+	lineColor?: string
 }
 
 interface ChartBoxProps {
@@ -48,9 +49,9 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 		let min = Number.MAX_SAFE_INTEGER
 		let max = 0
 
-		for (const county of data) {
-			const testMin = d3.min(county.data, (d: ChartData) => d.value) || Number.MAX_SAFE_INTEGER
-			const testMax = d3.max(county.data, (d: ChartData) => d.value) || max
+		data.map((dataPoint: ChartBoxData, index: number) => {
+			const testMin = d3.min(dataPoint.data, (d: ChartData) => d.value) || Number.MAX_SAFE_INTEGER
+			const testMax = d3.max(dataPoint.data, (d: ChartData) => d.value) || max
 
 			if (testMin < min) {
 				min = testMin
@@ -58,7 +59,9 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 			if (testMax > max) {
 				max = testMax
 			}
-		}
+
+			dataPoint.lineColor = `var(--line-color-${index%10})`
+		})
 		const dimensions = { width, height }
 
 		LineChart({

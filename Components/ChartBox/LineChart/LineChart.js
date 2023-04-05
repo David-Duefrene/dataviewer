@@ -49,22 +49,20 @@ const LineChart = ({
 		.attr('font-size', '0.75rem')
 
 	// Draw the line
-	const DrawLine = (lineData, key) => {
+	const DrawLine = (lineData, color) => {
 		const line = d3.line()
 			.x((d) => xScale(parseDate(d.date)))
 			.y((d) => yScale(d.value))
 
 		svg.append('path')
 			.attr('d', line(lineData))
-			.attr('stroke', `var(--line-color-${key%10})`)
+			.attr('stroke', color)
 			.attr('stroke-width', 2)
 			.attr('fill', 'none')
 			.attr('class', 'line')
 	}
 
-	for (const dataLine in data) {
-		DrawLine(data[dataLine].data, dataLine)
-	}
+	data.forEach((lineData) => DrawLine(lineData.data, lineData.lineColor))
 }
 
 export default LineChart
