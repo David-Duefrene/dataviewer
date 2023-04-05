@@ -1,38 +1,19 @@
 import React, { useState, useEffect } from 'react'
 
-import LineChart from './LineChart/LineChart'
 import * as d3 from 'd3'
 
-export interface ChartData {
-	date: string;
-	value: number;
-}
-
-interface ChartBoxData {
-	data: ChartData[]
-	name: string
-	lineColor?: string
-}
+import LineChart from './LineChart'
+import { ChartBoxData, ChartData } from './types'
 
 interface ChartBoxProps {
 	data: ChartBoxData[],
     title: string
 }
 
-/**
- *  ChartBox is a React wrapper for LineChart.
- */
 const ChartBox = ({ data, title }: ChartBoxProps) => {
 	const svgRef = React.useRef(null)
 
-	/**
-	 * The width of the chart
-	 */
 	const [ width, setWidth ] = useState(1500)
-
-	/**
-	 * The height of the chart
-	 */
 	const [ height, setHeight ] = useState(750)
 
 	// Resize the chart on window resize
