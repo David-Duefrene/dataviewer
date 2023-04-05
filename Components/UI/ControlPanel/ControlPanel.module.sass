@@ -2,5 +2,27 @@
 	height: 95vh
 	display: flex
 	flex-direction: column
-	background-color: pinkvar(--glass)
+	background-color: var(--bg-color)
 	width: 100%
+	transition: all 0.5s ease
+
+	div
+		z-index: 1
+
+.CollapseButton
+	visibility: visible
+	transition: all 0.5s ease
+	width: 100%
+	background-color: var(--glass)
+	border: 1px solid var(--alt-color)
+	border-radius: 5px
+	cursor: pointer
+	&:hover
+		background-color: var(--alt-color)
+		color: var(--text-color)
+
+.Collapsed
+	overflow: hidden
+	height: 0
+	width: 0
+	visibility: hidden
