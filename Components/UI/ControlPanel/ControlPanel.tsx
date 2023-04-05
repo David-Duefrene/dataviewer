@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import styles from './ControlPanel.module.sass'
 
 interface ControlPanelProps {
@@ -5,9 +7,13 @@ interface ControlPanelProps {
 }
 
 const ControlPanel = ({ children }: ControlPanelProps) => {
+	const [ isCollapsed, setIsCollapsed ] = useState(true)
+	const toggleCollapse = () => setIsCollapsed(!isCollapsed)
+
 	return (
-		<aside className={styles.ControlPanel} >
-			{children}
+		<aside className={styles.ControlPanel}>
+			<button className={`${styles.CollapseButton}`} onClick={toggleCollapse}>{isCollapsed ? '>' : '<'}</button>
+			<div className={`${isCollapsed ? styles.Collapsed : null}`}>{children}</div>
 		</aside>
 	)
 }
