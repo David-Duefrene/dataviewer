@@ -3,8 +3,8 @@ import useSWR from 'swr'
 import { useState } from 'react'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from 'next-i18next'
 
+import useVariableInterpolation from '../util/useVariableInterpolation'
 import ChartBox from '../Components/ChartBox/ChartBox'
 import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
@@ -24,7 +24,9 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
 }
 
 const Budget = () => {
-	const { t } = useTranslation('budget')
+	const { t } = useVariableInterpolation('budget')
+
+	const translatedCategories = CATEGORIES.map((category) => t(`selection.${category}`))
 
 	const [ year, setYear ] = useState(2021)
 	const { data, error, isLoading } = useSWR(`/api/getBudget/${year}`, (url) => fetch(url).then((res) => res.json()))
@@ -60,14 +62,14 @@ const Budget = () => {
 			<main>
 				<ControlPanel>
 					<Dropdown list={YEARS} selected={year} setSelected={setYear} />
-					<Dropdown list={CATEGORIES} selected={selection} setSelected={setSelection} />
+					<Dropdown list={translatedCategories} selected={selection} setSelected={setSelection} />
 					<SelectionList
 						list={Object.keys(dataSet[0][1])}
 						selected={subSelection}
 						setSelected={setSubSelection}
 					/>
 				</ControlPanel>
-				<ChartBox data={chartData} title={t('title', { selection: `$t(selection.${selection})`, interpolation: { skipOnVariables: false } })} />
+				<ChartBox data={chartData} title={t('title', { selection: `$t(selection.${selection})` })} />
 			</main>
 		</>
 	)
