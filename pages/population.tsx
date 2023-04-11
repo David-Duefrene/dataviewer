@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useState } from 'react'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -6,6 +5,7 @@ import { useTranslation } from 'next-i18next'
 
 import clientPromise from '../util/mongoClient'
 
+import Header from '../Components/UI/Header/Header'
 import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
 import ChartBox from '../Components/ChartBox/ChartBox'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
@@ -65,14 +65,26 @@ const Population = ({ countyJSON }: HomeProps) => {
 		dataSets.push({ data: newData, name: entry })
 	})
 
+	const keywords = [
+		'Population',
+		'Colorado',
+		'Historical data',
+		'Current population',
+		'Projected population',
+		'Census',
+		'Chart',
+		'Graph',
+		'Line chart',
+		'Visualization',
+	]
+
 	return (
 		<>
-			<Head>
-				<title>Population Chart</title>
-				<meta name='Population chart for Colorado' content='generated from data.colorado.gov' />
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
-
+			<Header
+				title='Population Chart'
+				description='Population chart for Colorado'
+				keywords={keywords}
+			/>
 			<main>
 				<ControlPanel>
 					<SelectionList list={Object.keys(countyJSON)} selected={county} setSelected={setCounty} />

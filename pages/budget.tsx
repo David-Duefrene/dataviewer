@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import useSWR from 'swr'
 import { useState } from 'react'
 
@@ -6,6 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import useVariableInterpolation from '../util/useVariableInterpolation'
 import ChartBox from '../Components/ChartBox/ChartBox'
+import Header from '../Components/UI/Header/Header'
 import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
 import Dropdown from '../Components/UI/ControlPanel/Dropdown/Dropdown'
@@ -52,13 +52,32 @@ const Budget = () => {
 		chartData.push({ data, name: sub })
 	})
 
+	const keywords = [
+		'Budget',
+		'Colorado',
+		'State budget',
+		'Fiscal year',
+		'Revenue',
+		'Expenses',
+		'Expenditures',
+		'Tax revenue',
+		'General fund',
+		'Debt',
+		'Trends',
+		'Analysis',
+		'Chart',
+		'Graph',
+		'Line chart',
+		'Visualization',
+	]
+
 	return (
 		<>
-			<Head>
-				<title>Budget Charts</title>
-				<meta name='Budget chart for Colorado' content='generated from data.colorado.gov' />
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
+			<Header
+				title='Budget Charts'
+				description='Budget chart for Colorado'
+				keywords={keywords}
+			/>
 			<main>
 				<ControlPanel>
 					<Dropdown list={YEARS} selected={year} setSelected={setYear} />
