@@ -1,0 +1,10 @@
+{
+	"title": "Colorado's {{selection}} Budget",
+	"selection": {
+		"cabinet_list": "Cabinet",
+		"department_list": "Department",
+		"grand_totals": "",
+		"fund_list": "Fund",
+		"fund_category_list": "Fund Category"
+	}
+}

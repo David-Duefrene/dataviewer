@@ -74,7 +74,7 @@ const LineChart = ({
 			.attr('class', 'line')
 	}
 
-	data.forEach((lineData) => DrawLine(lineData.data, lineData.lineColor))
+	data.forEach((lineData) => DrawLine(lineData.data, lineData.lineColor?.toString() || 'var(--primary-color'))
 }
 
 export default LineChart
