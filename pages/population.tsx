@@ -81,8 +81,8 @@ const Population = ({ countyJSON }: HomeProps) => {
 	return (
 		<>
 			<Header
-				title='Population Chart'
-				description='Population chart for Colorado'
+				title={t('headTitle')}
+				description={t('headDesc')}
 				keywords={keywords}
 			/>
 			<main>
