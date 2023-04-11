@@ -7,11 +7,7 @@ import { useTranslation } from 'next-i18next'
 
 import styles from '../styles/index.module.sass'
 
-type HomeStaticProps = {
-	locale: string
-}
-
-export const getStaticProps = async ({ locale }: HomeStaticProps) => {
+export const getStaticProps = async ({ locale }: { locale: string }) => {
 	return {
 		props: {
 			...await serverSideTranslations(locale, [
