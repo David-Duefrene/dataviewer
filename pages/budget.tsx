@@ -37,12 +37,6 @@ const Budget = () => {
 
 	const dataSet = [ data[selection] ]
 
-	const TEST = {}
-	Object.keys(dataSet[0][1]).forEach((key) => {
-		TEST[key] = key.replace(/ \(.+\)$/, '')
-	})
-	console.log(TEST)
-
 	const chartData: { data: { date: string, value: number}[], name: string}[] = []
 	subSelection.forEach((sub) => {
 		const data = []
@@ -75,7 +69,7 @@ const Budget = () => {
 		'Line chart',
 		'Visualization',
 	]
-	// debugger
+
 	return (
 		<>
 			<Header
@@ -88,9 +82,10 @@ const Budget = () => {
 					<Dropdown list={YEARS} selected={year} setSelected={setYear} />
 					<Dropdown list={CATEGORIES} selected={selection} setSelected={setSelection} getTranslation={(c) => t(`selection.${c}`)} />
 					<SelectionList
-						list={Object.keys(dataSet[0][1]).map((key) => t(`${translatedSelection.toLowerCase()}.${key}`))}
+						list={Object.keys(dataSet[0][1])}
 						selected={subSelection}
 						setSelected={setSubSelection}
+						getTranslation={(c) => t(`${translatedSelection.toLowerCase()}.${c}`)}
 					/>
 				</ControlPanel>
 				<ChartBox data={chartData} title={t('title', { selection: translatedSelection })} />
