@@ -65,11 +65,13 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 		<article>
 			<h1>{title}</h1>
 			<table className={styles.ColorKey}>
-				<tr>
-					<th>Name</th>
-					<th>Color</th>
-				</tr>
-				{linesColors}
+				<tbody>
+					<tr>
+						<td>Name</td>
+						<td>Color</td>
+					</tr>
+					{linesColors}
+				</tbody>
 			</table>
 			<svg className='Chart' ref={svgRef} width={width + 120} height={height * 1.1} />
 		</article>

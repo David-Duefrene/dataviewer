@@ -1,12 +1,13 @@
 import styles from './SelectionList.module.sass'
 
 interface SelectionListProps {
-	list: string[];
-	selected: string[];
-	setSelected: (s: string[]) => void;
+	list: string[]
+	selected: string[]
+	setSelected: (s: string[]) => void
+	getTranslation?: (key: string) => string
 }
 
-const SelectionList = ({ list, selected, setSelected }: SelectionListProps) => {
+const SelectionList = ({ list, selected, setSelected, getTranslation = (e) => e }: SelectionListProps) => {
 	const listItems = list.map((entry) => {
 		return (
 			<li key={entry}>
@@ -22,7 +23,7 @@ const SelectionList = ({ list, selected, setSelected }: SelectionListProps) => {
 						setSelected([ ...selected, entry ])
 					}}
 				>
-					{entry}
+					{getTranslation(entry.toString())}
 				</button>
 			</li>
 		)

@@ -6,5 +6,5 @@ export interface ChartData {
 export interface ChartBoxData {
 	data: ChartData[]
 	name: string
-	lineColor: string
+	lineColor?: string
 }

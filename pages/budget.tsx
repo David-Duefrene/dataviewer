@@ -1,9 +1,11 @@
-import Head from 'next/head'
 import useSWR from 'swr'
-
 import { useState } from 'react'
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+import useVariableInterpolation from '../util/useVariableInterpolation'
 import ChartBox from '../Components/ChartBox/ChartBox'
+import Header from '../Components/UI/Header/Header'
 import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
 import Dropdown from '../Components/UI/ControlPanel/Dropdown/Dropdown'
@@ -11,10 +13,23 @@ import Dropdown from '../Components/UI/ControlPanel/Dropdown/Dropdown'
 const YEARS = [ 2015, 2016, 2017, 2018, 2019, 2020, 2021 ]
 const CATEGORIES = [ 'cabinet_list', 'department_list', /*'grand_totals',*/ 'fund_list', 'fund_category_list' ]
 
+export const getStaticProps = async ({ locale }: { locale: string }) => {
+	return {
+		props: {
+			...await serverSideTranslations(locale, [
+				'budget',
+			]),
+		},
+	}
+}
+
 const Budget = () => {
+	const { t } = useVariableInterpolation('budget')
+
 	const [ year, setYear ] = useState(2021)
 	const { data, error, isLoading } = useSWR(`/api/getBudget/${year}`, (url) => fetch(url).then((res) => res.json()))
 	const [ selection, setSelection ] = useState('cabinet_list')
+	const translatedSelection = t(`selection.${selection}`)
 	const [ subSelection, setSubSelection ] = useState([ 'total' ])
 
 	if (isLoading) return <div>Loading...</div>
@@ -36,24 +51,44 @@ const Budget = () => {
 		chartData.push({ data, name: sub })
 	})
 
+	const keywords = [
+		'Budget',
+		'Colorado',
+		'State budget',
+		'Fiscal year',
+		'Revenue',
+		'Expenses',
+		'Expenditures',
+		'Tax revenue',
+		'General fund',
+		'Debt',
+		'Trends',
+		'Analysis',
+		'Chart',
+		'Graph',
+		'Line chart',
+		'Visualization',
+	]
+
 	return (
 		<>
-			<Head>
-				<title>Budget Charts</title>
-				<meta name='Budget chart for Colorado' content='generated from data.colorado.gov' />
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
+			<Header
+				title={t('title', { selection: translatedSelection })}
+				description={t('description', { selection: translatedSelection })}
+				keywords={keywords}
+			/>
 			<main>
 				<ControlPanel>
 					<Dropdown list={YEARS} selected={year} setSelected={setYear} />
-					<Dropdown list={CATEGORIES} selected={selection} setSelected={setSelection} />
+					<Dropdown list={CATEGORIES} selected={selection} setSelected={setSelection} getTranslation={(c) => t(`selection.${c}`)} />
 					<SelectionList
 						list={Object.keys(dataSet[0][1])}
 						selected={subSelection}
 						setSelected={setSubSelection}
+						getTranslation={(c) => t(`${translatedSelection.toLowerCase()}.${c}`)}
 					/>
 				</ControlPanel>
-				<ChartBox data={chartData} title={`Colorado's ${selection} Budget`} />
+				<ChartBox data={chartData} title={t('title', { selection: translatedSelection })} />
 			</main>
 		</>
 	)

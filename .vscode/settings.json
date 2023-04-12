@@ -1,8 +1,11 @@
 {
   "cSpell.words": [
-    "Avenir",
-    "Bitstream",
-    "octo"
+	"Arapahoe",
+	"Avenir",
+	"Bitstream",
+	"GJBA",
+	"GYAA",
+	"octo"
 ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true

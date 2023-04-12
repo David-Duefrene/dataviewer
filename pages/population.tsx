@@ -1,19 +1,16 @@
-import Head from 'next/head'
-
 import { useState } from 'react'
+
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 import clientPromise from '../util/mongoClient'
 
+import Header from '../Components/UI/Header/Header'
 import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
 import ChartBox from '../Components/ChartBox/ChartBox'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
 
-interface PopData {
-	year: number;
-	totalPopulation: number;
-}
-
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ locale }: { locale: string }) => {
 	try {
 		const client = await clientPromise
 		const db = client.db('DataViewer')
@@ -26,7 +23,12 @@ export const getServerSideProps = async () => {
 		delete json._id
 
 		return {
-			props: { countyJSON: json },
+			props: {
+				countyJSON: json,
+				...await serverSideTranslations(locale, [
+					'population',
+				]),
+			},
 		}
 	} catch (e) {
 		// eslint-disable-next-line no-console
@@ -35,11 +37,18 @@ export const getServerSideProps = async () => {
 	}
 }
 
+interface PopData {
+	year: number;
+	totalPopulation: number;
+}
+
 interface HomeProps {
     countyJSON: Record<string, PopData[]>;
 }
 
 const Population = ({ countyJSON }: HomeProps) => {
+	const { t } = useTranslation('population')
+
 	const [ county, setCounty ] = useState([ 'Denver', 'El Paso' ])
 
 	const dataSets: { data: { date: string, value: number}[], name: string}[] = []
@@ -56,19 +65,31 @@ const Population = ({ countyJSON }: HomeProps) => {
 		dataSets.push({ data: newData, name: entry })
 	})
 
+	const keywords = [
+		'Population',
+		'Colorado',
+		'Historical data',
+		'Current population',
+		'Projected population',
+		'Census',
+		'Chart',
+		'Graph',
+		'Line chart',
+		'Visualization',
+	]
+
 	return (
 		<>
-			<Head>
-				<title>Population Chart</title>
-				<meta name='Population chart for Colorado' content='generated from data.colorado.gov' />
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
-
+			<Header
+				title={t('headTitle')}
+				description={t('headDescription')}
+				keywords={keywords}
+			/>
 			<main>
 				<ControlPanel>
 					<SelectionList list={Object.keys(countyJSON)} selected={county} setSelected={setCounty} />
 				</ControlPanel>
-				<ChartBox data={dataSets} title='Colorado Population & Projected Growth' />
+				<ChartBox data={dataSets} title={t('title')} />
 			</main>
 		</>
 	)
