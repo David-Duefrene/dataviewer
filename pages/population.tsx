@@ -82,7 +82,7 @@ const Population = ({ countyJSON }: HomeProps) => {
 		<>
 			<Header
 				title={t('headTitle')}
-				description={t('headDesc')}
+				description={t('headDescription')}
 				keywords={keywords}
 			/>
 			<main>

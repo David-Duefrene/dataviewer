@@ -26,17 +26,22 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
 const Budget = () => {
 	const { t } = useVariableInterpolation('budget')
 
-	const translatedCategories = CATEGORIES.map((category) => t(`selection.${category}`))
-
 	const [ year, setYear ] = useState(2021)
 	const { data, error, isLoading } = useSWR(`/api/getBudget/${year}`, (url) => fetch(url).then((res) => res.json()))
 	const [ selection, setSelection ] = useState('cabinet_list')
+	const translatedSelection = t(`selection.${selection}`)
 	const [ subSelection, setSubSelection ] = useState([ 'total' ])
 
 	if (isLoading) return <div>Loading...</div>
 	if (error) return <div>Error: {error.message}</div>
 
 	const dataSet = [ data[selection] ]
+
+	const TEST = {}
+	Object.keys(dataSet[0][1]).forEach((key) => {
+		TEST[key] = key.replace(/ \(.+\)$/, '')
+	})
+	console.log(TEST)
 
 	const chartData: { data: { date: string, value: number}[], name: string}[] = []
 	subSelection.forEach((sub) => {
@@ -70,25 +75,25 @@ const Budget = () => {
 		'Line chart',
 		'Visualization',
 	]
-
+	// debugger
 	return (
 		<>
 			<Header
-				title='Budget Charts'
-				description='Budget chart for Colorado'
+				title={t('title', { selection: translatedSelection })}
+				description={t('description', { selection: translatedSelection })}
 				keywords={keywords}
 			/>
 			<main>
 				<ControlPanel>
 					<Dropdown list={YEARS} selected={year} setSelected={setYear} />
-					<Dropdown list={translatedCategories} selected={selection} setSelected={setSelection} />
+					<Dropdown list={CATEGORIES} selected={selection} setSelected={setSelection} getTranslation={(c) => t(`selection.${c}`)} />
 					<SelectionList
-						list={Object.keys(dataSet[0][1])}
+						list={Object.keys(dataSet[0][1]).map((key) => t(`${translatedSelection.toLowerCase()}.${key}`))}
 						selected={subSelection}
 						setSelected={setSubSelection}
 					/>
 				</ControlPanel>
-				<ChartBox data={chartData} title={t('title', { selection: `$t(selection.${selection})` })} />
+				<ChartBox data={chartData} title={t('title', { selection: translatedSelection })} />
 			</main>
 		</>
 	)
