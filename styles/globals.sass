@@ -17,7 +17,7 @@ html, body
 
 	--alt-color: grey
 	--text-color: white
-	--bg-color: #242424
+	--bg-color: #000000
 	--glass: rgba(0, 0, 0, 0)
 
 	--line-color-0: #ff0000
@@ -36,8 +36,8 @@ html, body
 	background-color: var(--bg-color)
 
 	@media (prefers-color-scheme: light)
-		color: #213547
-		background-color: #ffffff
+		--text-color: #000000
+		--bg-color: #ffffff
 
 
 
@@ -47,6 +47,8 @@ main
 	justify-content: center
 	align-items: center
 	height: 100vh
+	width: 100vw
+	overflow: hidden
 
 
 a
