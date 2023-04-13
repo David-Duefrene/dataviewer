@@ -26,6 +26,7 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 			setHeight(window.innerHeight * 0.75)
 		}
 		window.addEventListener('resize', handleResize)
+		handleResize()
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
 
