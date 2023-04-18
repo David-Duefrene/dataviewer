@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 
 import LineChart from './LineChart'
 import { ChartBoxData, ChartData } from './types'
-import styles from './ChartBox.module.sass'
+import ColorKey, { ColorRow } from './ColorKey/ColorKey'
 
 interface ChartBoxProps {
 	data: ChartBoxData[],
@@ -47,12 +47,7 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 		const color = `var(--line-color-${index%10})`
 		const name = dataPoint.name
 		dataPoint.lineColor = color
-		linesColors.push(
-			<tr className={styles.Row} key={`liceColor-${name}`}>
-				<td>{name}</td>
-				<td className={styles.Color} style={{ backgroundColor: color }} />
-			</tr>,
-		)
+		linesColors.push(<ColorRow name={name} color={color} />)
 	})
 
 	useEffect(() => {
@@ -65,15 +60,7 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 	return (
 		<article>
 			<h1>{title}</h1>
-			<table className={styles.ColorKey}>
-				<tbody>
-					<tr>
-						<td>Name</td>
-						<td>Color</td>
-					</tr>
-					{linesColors}
-				</tbody>
-			</table>
+			<ColorKey>{linesColors}</ColorKey>
 			<svg className='Chart' ref={svgRef} width={width + 120} height={height * 1.1} />
 		</article>
 	)
