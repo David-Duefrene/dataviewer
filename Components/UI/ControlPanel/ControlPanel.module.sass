@@ -1,13 +1,22 @@
 .ControlPanel
-	height: 95vh
 	display: flex
 	flex-direction: column
-	background-color: var(--bg-color)
 	width: 100%
 	transition: all 0.5s ease
 
+
+	// allows control panel to cover line colors
 	div
 		z-index: 1
+		background-color: var(--bg-color)
+		height: 100vh
+
+	@media (max-width: 825px)
+		position: absolute
+		top: 0
+		left: 0
+		max-width: 25vw
+		overflow: hidden
 
 .CollapseButton
 	visibility: visible
@@ -17,9 +26,15 @@
 	border: 1px solid var(--alt-color)
 	border-radius: 5px
 	cursor: pointer
+
 	&:hover
 		background-color: var(--alt-color)
 		color: var(--text-color)
+
+	@media (max-width: 600px)
+		position: absolute
+		width: 20%
+		z-index: 2
 
 .Collapsed
 	overflow: hidden
