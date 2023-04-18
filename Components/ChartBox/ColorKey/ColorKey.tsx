@@ -1,10 +1,6 @@
 import styles from './ColorKey.module.sass'
 
-type Props = {
-	children: JSX.Element[] | JSX.Element
-}
-
-const ColorKey = ({ children }: Props) => {
+const ColorKey = ({ children }: { children: JSX.Element[] | JSX.Element }) => {
 	return <table className={styles.ColorKey}>
 		<tbody>
 			<tr>
@@ -17,3 +13,12 @@ const ColorKey = ({ children }: Props) => {
 }
 
 export default ColorKey
+
+export const ColorRow = ({ name, color }: { name: string, color: string }) => {
+	return (
+		<tr className={styles.Row} key={`lineColor-${name}`}>
+			<td>{name}</td>
+			<td className={styles.Color} style={{ backgroundColor: color }} />
+		</tr>
+	)
+}
