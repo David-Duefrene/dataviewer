@@ -1,11 +1,14 @@
 .ColorKey
 	position: absolute
-	top: 10%
+	top: 12%
 	left: 0
+
 	max-width: 15%
-	display: flex
-	overflow: scroll
 	max-height: 80vh
+	display: flex
+	z-index: 0
+
+	overflow: scroll
 	-ms-overflow-style: none  // Internet Explorer 10+
 	scrollbar-width: none  // Firefox
 
@@ -15,6 +18,7 @@
 .Row
 	border: 5px solid var(--alt-color)
 	border-radius: 5px
+
 	background-color: var(--glass)
 	color: var(--text-color)
 	font-size: .75em
