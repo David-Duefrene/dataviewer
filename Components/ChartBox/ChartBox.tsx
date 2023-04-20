@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 
 import * as d3 from 'd3'
 
+import ColorKey, { ColorRow } from './ColorKey/ColorKey'
 import LineChart from './LineChart'
 import { ChartBoxData, ChartData } from './types'
-import ColorKey, { ColorRow } from './ColorKey/ColorKey'
+
+import styles from './ChartBox.module.sass'
 
 interface ChartBoxProps {
 	data: ChartBoxData[],
@@ -60,8 +62,10 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 	return (
 		<article>
 			<h1>{title}</h1>
-			<ColorKey>{linesColors}</ColorKey>
-			<svg className='Chart' ref={svgRef} width={width + 120} height={height * 1.1} />
+			<div className={styles.ChartArea}>
+				<ColorKey>{linesColors}</ColorKey>
+				<svg className='Chart' ref={svgRef} width={width + 120} height={height * 1.1} />
+			</div>
 		</article>
 	)
 }
