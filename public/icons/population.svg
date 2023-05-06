@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="population.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="11.313709"
+     inkscape:cx="74.511375"
+     inkscape:cy="157.7732"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="256,472.0821"
+       orientation="1,0"
+       id="guide901"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="195.94071,481.27708"
+       orientation="1,0"
+       id="guide1629"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="315.98632,310.80502"
+       orientation="1,0"
+       id="guide3139"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="170.59576,302.90925"
+       orientation="0.008283307,0.99996569"
+       id="guide3141"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="188.33346,139.00119"
+       orientation="0,-1"
+       id="guide1014"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="316.43028,244.53687"
+       orientation="0,-1"
+       id="guide853"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="68.014832,175.10782"
+       orientation="1,0"
+       id="guide478"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="442.95819,198.42025"
+       orientation="1,0"
+       id="guide528"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:4.99979"
+       id="path739"
+       cx="68.295494"
+       cy="98.727592"
+       rx="57.500107"
+       ry="56.045715" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       d="m 128,270 v 103 h 60 V 270 h 8 v 239.6 h 54.4 V 373 h 11.2 V 509.6 H 316 V 270 h 8 l -10e-6,103 60.00001,-2e-5 V 270 c 1.19912,-63.44059 -65,-60 -65,-60 L 196,208.58579 C 125.93454,203.87467 128,270 128,270 Z"
+       id="path969"
+       sodipodi:nodetypes="ccccccccccccccccccc"
+       clip-path="none" />
+    <path
+       id="path849"
+       clip-path="none"
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-dasharray:none;image-rendering:auto"
+       d="M 191.26317,207.64644 C 181.32536,154.4589 128,155 128,155 H 0 v 63 H 8 V 457 H 63 V 320 h 10 v 137 h 55.26315 L 128,218 h 8.26315 L 136,237"
+       sodipodi:nodetypes="cccccccccccccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-dasharray:none"
+       d="m 376,236 v -18 h 8 v 240 h 54 V 321 h 9.99981 l 3.8e-4,137 H 504 V 218 h 8 V 157 H 384 c -70.06546,-4.71112 -69.5,52 -69.5,52"
+       id="path851"
+       sodipodi:nodetypes="cccccccccccccc" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:4.99979"
+       id="ellipse476"
+       cx="256.53033"
+       cy="153.02048"
+       rx="57.500107"
+       ry="56.045715" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:4.99979"
+       id="ellipse530"
+       cx="442.5878"
+       cy="100.69459"
+       rx="57.500107"
+       ry="56.045715" />
+  </g>
+</svg>
