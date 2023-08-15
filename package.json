@@ -1,38 +1,36 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next dev",
-    "serve": "next start",
-    "test": "vitest",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "d3": "^7.6.1",
-    "i18next": "^22.4.14",
-    "mongodb": "^5.0.0",
-    "next": "^13.1.5",
-    "next-i18next": "^13.2.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-i18next": "^12.2.0",
-    "swr": "^2.0.4"
-  },
-  "devDependencies": {
-    "@testing-library/react": "^14.0.0",
-    "@types/d3": "^7.4.0",
-    "@types/node": "18.17.5",
-    "@types/react": "18.2.20",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vitejs/plugin-react": "4.0.4",
-    "eslint": "^8.37.0",
-    "eslint-config-next": "^13.1.5",
-    "eslint-config-vigilant-octo-train": "^0.0.4",
-    "jsdom": "^22.0.0",
-    "sass": "^1.57.1",
-    "typescript": "^5.0.3",
-    "vitest": "0.34.1"
-  }
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next dev",
+		"serve": "next start",
+		"test": "vitest",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"d3": "^7.6.1",
+		"mongodb": "^5.0.0",
+		"next": "^13.1.5",
+		"next-i18next": "^14.0.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"swr": "^2.0.4"
+	},
+	"devDependencies": {
+		"@testing-library/react": "^14.0.0",
+		"@types/d3": "^7.4.0",
+		"@types/node": "18.17.5",
+		"@types/react": "18.2.20",
+		"@typescript-eslint/eslint-plugin": "^6.0.0",
+		"@typescript-eslint/parser": "^6.0.0",
+		"@vitejs/plugin-react": "4.0.4",
+		"eslint": "^8.37.0",
+		"eslint-config-next": "^13.1.5",
+		"eslint-config-vigilant-octo-train": "^0.0.4",
+		"jsdom": "^22.0.0",
+		"sass": "^1.57.1",
+		"typescript": "^5.0.3",
+		"vitest": "0.34.1"
+	}
 }
