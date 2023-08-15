@@ -6,6 +6,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
 import styles from '../styles/index.module.sass'
+import Image from 'next/image'
+//Import populationLogo from '../'
 
 export const getStaticProps = async ({ locale }: { locale: string }) => {
 	return {
@@ -20,8 +22,12 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
 const Home: NextPage = () => {
 	const { t } = useTranslation('chartList')
 	const charts = [
-		<Link key='0' className={styles.Link} href='/population'>{t('population')}</Link>,
-		<Link key='1' className={styles.Link} href='/budget'>{t('budget')}</Link>,
+		<Link key='0' className={styles.Link} href='/population'>
+			<Image src='/icons/population.svg' width='50' height='50' alt={t('population')} />{t('population')}
+		</Link>,
+		<Link key='1' className={styles.Link} href='/budget'>
+			<Image src='/icons/budget.svg' width='50' height='50' alt={t('budget')} />{t('budget')}
+		</Link>,
 	]
 
 	return (
