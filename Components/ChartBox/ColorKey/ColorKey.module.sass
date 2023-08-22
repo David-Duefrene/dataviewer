@@ -1,26 +1,25 @@
 .ColorKey
-	position: relative
-	top: 12%
-	left: 0
+    position: relative
+    top: 12%
+    left: 0
 
-	width: 15%
-	max-height: 80vh
-	display: flex
-	z-index: 0
+    width: 15%
+    max-height: 80vh
+    display: flex
+    z-index: 0
 
-	display: grid
-	grid-template-columns: repeat(auto-fill, minmax(50px, 1fr))
-	grid-auto-rows: minmax(25px, auto)
-	gap: 5px
+    flex: flex
+    flex-direction: column
 
-	overflow: scroll
-	-ms-overflow-style: none  // Internet Explorer 10+
-	scrollbar-width: none  // Firefox
+    overflow: scroll
+    -ms-overflow-style: none  // Internet Explorer 10+
+    scrollbar-width: none  // Firefox
 
-	&::-webkit-scrollbar
-		display: none  // Safari and Chrome
+    &::-webkit-scrollbar
+        display: none  // Safari and Chrome
 
 .Color
-	color: var(--bg-color)
-	font-size: .75em
-	margin: 5px 5px 5px 0
+    color: var(--bg-color)
+    font-size: .75em
+    margin: 5px 5px 5px 0
+    max-height: 2em
