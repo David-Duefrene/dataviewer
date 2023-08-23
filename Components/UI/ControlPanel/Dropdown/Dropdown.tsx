@@ -5,7 +5,7 @@ import styles from './Dropdown.module.sass'
 interface DropdownProps {
 	list: number[] | string[]
 	selected: number | string
-	setSelected: Dispatch<SetStateAction<any>>
+	setSelected: Dispatch<SetStateAction<string>>
 	getTranslation?: (key: string) => string
 }
 
