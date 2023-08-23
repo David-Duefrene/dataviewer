@@ -1,43 +1,44 @@
 .ControlPanel
-	display: flex
-	flex-direction: column
-	width: 100%
-	height: 95vh
-	transition: all 0.5s ease
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 95vh
+    transition: all 0.5s ease
 
-	// allows control panel to cover line colors
-	div
-		z-index: 1
-		background-color: var(--bg-color)
+    // allows control panel to cover line colors
+    div
+        z-index: 1
+        background-color: var(--bg-color)
 
-	position: absolute
-	top: 0
-	left: 0
-	max-width: 25vw
-	overflow: hidden
+    position: absolute
+    top: 2em
+    left: 0
+    max-width: 25vw
+    overflow: hidden
 
 .CollapseButton
-	visibility: visible
-	transition: all 0.5s ease
+    visibility: visible
+    transition: all 0.5s ease
 
-	position: absolute
-	top: 0
-	width: 20%
-	z-index: 2
+    position: absolute
+    top: 0
+    left: 0
+    width: 20%
+    z-index: 2
 
-	background-color: var(--bg-color)
-	background-image: linear-gradient(45deg, var(--bg-color), var(--alt-color) 95%)
-	border: 1px solid var(--alt-color)
-	border-radius: 5px
+    background-color: var(--bg-color)
+    background-image: linear-gradient(45deg, var(--bg-color), var(--alt-color) 95%)
+    border: 1px solid var(--alt-color)
+    border-radius: 5px
 
-	cursor: pointer
+    cursor: pointer
 
-	&:hover
-		background-color: var(--alt-color)
-		color: var(--text-color)
+    &:hover
+        background-color: var(--alt-color)
+        color: var(--text-color)
 
 .Collapsed
-	overflow: hidden
-	height: 0
-	width: 0
-	visibility: hidden
+    overflow: hidden
+    height: 0
+    width: 0
+    visibility: hidden

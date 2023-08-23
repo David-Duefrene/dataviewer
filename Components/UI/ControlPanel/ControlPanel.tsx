@@ -11,10 +11,12 @@ const ControlPanel = ({ children }: ControlPanelProps) => {
 	const toggleCollapse = () => setIsCollapsed(!isCollapsed)
 
 	return (
-		<aside className={isCollapsed ? styles.Collapsed : styles.ControlPanel}>
+		<>
 			<button className={`${styles.CollapseButton}`} onClick={toggleCollapse}>{isCollapsed ? '>' : '<'}</button>
-			<div className={`${isCollapsed ? styles.Collapsed : null}`}>{children}</div>
-		</aside>
+			<aside className={isCollapsed ? styles.Collapsed : styles.ControlPanel}>
+				<div className={`${isCollapsed ? styles.Collapsed : null}`}>{children}</div>
+			</aside>
+		</>
 	)
 }
 
