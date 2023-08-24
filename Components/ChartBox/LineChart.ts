@@ -1,8 +1,17 @@
 import * as d3 from 'd3'
 
-import { ChartData, ChartBoxData } from './types'
+export interface ChartData {
+	date: string
+	value: number
+}
 
-interface LineChartProps {
+export interface ChartBoxData {
+	data: ChartData[]
+	name: string
+	lineColor?: string
+}
+
+export interface LineChartProps {
 	data: ChartBoxData[]
 	dimensions: {
 		width: number;
@@ -11,11 +20,11 @@ interface LineChartProps {
 	svgRef: React.RefObject<SVGSVGElement>
 	min: number;
 	max: number;
-  }
+}
 
 const LineChart = ({
 	data, dimensions, svgRef, min, max,
-}: LineChartProps) => {
+}: LineChartProps): void => {
 	const { width, height } = dimensions
 	const parseDate = d3.timeParse('%Y-%m-%d')
 	const xScale = d3.scaleTime()
@@ -62,12 +71,12 @@ const LineChart = ({
 
 	// Draw the line
 	const DrawLine = (lineData: ChartData[], color: string) => {
-		const line = d3.line()
-			.x((d: any) => xScale(parseDate(d.date) as Date))
-			.y((d: any) => yScale(d.value) as number)
+		const line = d3.line<ChartData>()
+			.x((d) => xScale(parseDate(d.date) as Date))
+			.y((d) => yScale(d.value))
 
 		svg.append('path')
-			.attr('d', line(lineData as Iterable<[number, number]>))
+			.attr('d', line(lineData))
 			.attr('stroke', color)
 			.attr('stroke-width', 2)
 			.attr('fill', 'none')

@@ -15,5 +15,7 @@ module.exports = {
 	rules: {
 		'react/react-in-jsx-scope': 0,
 		'object-curly-newline': [ 'error', { 'minProperties': 5, 'multiline': true, 'consistent': true } ],
+		// No implicit any
+		'@typescript-eslint/no-explicit-any': 0,
 	},
 }
