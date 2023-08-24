@@ -48,7 +48,7 @@ const Budget = () => {
 				date: `${year}-${day}-01`,
 			})
 		}
-		chartData.push({ data, name: sub })
+		chartData.push({ data, name: t(`${translatedSelection.toLowerCase()}.${sub}`) })
 	})
 
 	const keywords = [
