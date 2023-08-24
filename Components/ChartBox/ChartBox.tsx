@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 
 import * as d3 from 'd3'
 
@@ -10,14 +11,14 @@ import styles from './ChartBox.module.sass'
 
 interface ChartBoxProps {
 	data: ChartBoxData[],
-    title: string
+	title: string
 }
 
 const ChartBox = ({ data, title }: ChartBoxProps) => {
 	const svgRef = React.useRef(null)
 
-	const [ width, setWidth ] = useState(1500)
-	const [ height, setHeight ] = useState(750)
+	const [ width, setWidth ]: [number, Dispatch<SetStateAction<number>>] = useState(1500)
+	const [ height, setHeight ]: [number, Dispatch<SetStateAction<number>>] = useState(750)
 
 	const linesColors: React.ReactElement<unknown, string> | JSX.Element[] = []
 
@@ -36,8 +37,8 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 	let max = 0
 
 	data.map((dataPoint: ChartBoxData, index: number) => {
-		const testMin = d3.min(dataPoint.data, (d: ChartData) => d.value) || Number.MAX_SAFE_INTEGER
-		const testMax = d3.max(dataPoint.data, (d: ChartData) => d.value) || max
+		const testMin: number = d3.min(dataPoint.data, (d: ChartData) => d.value) || Number.MAX_SAFE_INTEGER
+		const testMax: number = d3.max(dataPoint.data, (d: ChartData) => d.value) || max
 
 		if (testMin < min) {
 			min = testMin
@@ -46,8 +47,8 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 			max = testMax
 		}
 
-		const color = `var(--line-color-${index%10})`
-		const name = dataPoint.name
+		const color: string = `var(--line-color-${index % 10})`
+		const name: string = dataPoint.name
 		dataPoint.lineColor = color
 		linesColors.push(<ColorRow name={name} color={color} />)
 	})
@@ -64,7 +65,7 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 			<h1>{title}</h1>
 			<div className={styles.ChartArea}>
 				<ColorKey>{linesColors}</ColorKey>
-				<svg className='Chart' ref={svgRef} width={width + 120} height={height * 1.1} />
+				<svg className={styles.Chart} ref={svgRef} width={width + 120} height={height * 1.1} />
 			</div>
 		</article>
 	)

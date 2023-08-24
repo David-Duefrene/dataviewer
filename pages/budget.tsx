@@ -26,7 +26,7 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
 const Budget = () => {
 	const { t } = useVariableInterpolation('budget')
 
-	const [ year, setYear ] = useState(2021)
+	const [ year, setYear ] = useState('2021')
 	const { data, error, isLoading } = useSWR(`/api/getBudget/${year}`, (url) => fetch(url).then((res) => res.json()))
 	const [ selection, setSelection ] = useState('cabinet_list')
 	const translatedSelection = t(`selection.${selection}`)
@@ -37,7 +37,7 @@ const Budget = () => {
 
 	const dataSet = [ data[selection] ]
 
-	const chartData: { data: { date: string, value: number}[], name: string}[] = []
+	const chartData: { data: { date: string, value: number }[], name: string }[] = []
 	subSelection.forEach((sub) => {
 		const data = []
 		for (let index = 0; index < 12; index++) {

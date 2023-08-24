@@ -12,7 +12,7 @@ const SelectionList = ({ list, selected, setSelected, getTranslation = (e) => e 
 		return (
 			<li key={entry}>
 				<button
-					className={`${styles.SelectionButton} ${selected.includes(entry) ? styles.Active : ''}`}
+					className={`${styles.SelectionButton} ${selected.includes(entry) ? 'Active' : ''}`}
 					onClick={() => {
 						if (selected.includes(entry)) {
 							if (selected.length > 1) {
