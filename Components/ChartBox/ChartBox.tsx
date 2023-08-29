@@ -11,10 +11,9 @@ import styles from './ChartBox.module.sass'
 
 interface ChartBoxProps {
 	data: ChartBoxData[],
-	title: string
 }
 
-const ChartBox = ({ data, title }: ChartBoxProps) => {
+const ChartBox = ({ data }: ChartBoxProps) => {
 	const svgRef = React.useRef(null)
 
 	const [ width, setWidth ]: [number, Dispatch<SetStateAction<number>>] = useState(1500)
@@ -62,7 +61,7 @@ const ChartBox = ({ data, title }: ChartBoxProps) => {
 
 	return (
 		<article>
-			<h1>{title}</h1>
+
 			<div className={styles.ChartArea}>
 				<ColorKey>{linesColors}</ColorKey>
 				<svg className={styles.Chart} ref={svgRef} width={width + 120} height={height * 1.1} />

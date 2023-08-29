@@ -89,7 +89,8 @@ const Population = ({ countyJSON }: HomeProps) => {
 				<ControlPanel>
 					<SelectionList list={Object.keys(countyJSON)} selected={county} setSelected={setCounty} />
 				</ControlPanel>
-				<ChartBox data={dataSets} title={t('title')} />
+				<h1>{t('title')}</h1>
+				<ChartBox data={dataSets} />
 			</main>
 		</>
 	)

@@ -88,7 +88,8 @@ const Budget = () => {
 						getTranslation={(c) => t(`${translatedSelection.toLowerCase()}.${c}`)}
 					/>
 				</ControlPanel>
-				<ChartBox data={chartData} title={t('title', { selection: translatedSelection })} />
+				<h1>{t('title', { selection: translatedSelection })}</h1>
+				<ChartBox data={chartData} />
 			</main>
 		</>
 	)
