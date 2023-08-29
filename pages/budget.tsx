@@ -4,8 +4,11 @@ import { useState } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import useVariableInterpolation from '../util/useVariableInterpolation'
+
 import ChartBox from '../Components/ChartBox/ChartBox'
+
 import Header from '../Components/UI/Header/Header'
+
 import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
 import Dropdown from '../Components/UI/ControlPanel/Dropdown/Dropdown'
@@ -88,7 +91,7 @@ const Budget = () => {
 						getTranslation={(c) => t(`${translatedSelection.toLowerCase()}.${c}`)}
 					/>
 				</ControlPanel>
-				<ChartBox data={chartData} title={t('title', { selection: translatedSelection })} />
+				<ChartBox data={chartData} title='budget' lang={{ selection: translatedSelection }} />
 			</main>
 		</>
 	)

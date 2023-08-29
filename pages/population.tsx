@@ -5,9 +5,10 @@ import { useTranslation } from 'next-i18next'
 
 import clientPromise from '../util/mongoClient'
 
+import ChartBox from '../Components/ChartBox/ChartBox'
+
 import Header from '../Components/UI/Header/Header'
 import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
-import ChartBox from '../Components/ChartBox/ChartBox'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
 
 export const getServerSideProps = async ({ locale }: { locale: string }) => {
@@ -89,7 +90,7 @@ const Population = ({ countyJSON }: HomeProps) => {
 				<ControlPanel>
 					<SelectionList list={Object.keys(countyJSON)} selected={county} setSelected={setCounty} />
 				</ControlPanel>
-				<ChartBox data={dataSets} title={t('title')} />
+				<ChartBox data={dataSets} title='population' />
 			</main>
 		</>
 	)
