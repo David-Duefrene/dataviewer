@@ -8,7 +8,6 @@ import useVariableInterpolation from '../util/useVariableInterpolation'
 import ChartBox from '../Components/ChartBox/ChartBox'
 
 import Header from '../Components/UI/Header/Header'
-import Title from '../Components/UI/Title/Title'
 
 import ControlPanel from '../Components/UI/ControlPanel/ControlPanel'
 import SelectionList from '../Components/UI/ControlPanel/SelectionList/SelectionList'
@@ -92,8 +91,7 @@ const Budget = () => {
 						getTranslation={(c) => t(`${translatedSelection.toLowerCase()}.${c}`)}
 					/>
 				</ControlPanel>
-				<Title page='budget' opts={{ selection: translatedSelection }} />
-				<ChartBox data={chartData} />
+				<ChartBox data={chartData} title='budget' lang={{ selection: translatedSelection }} />
 			</main>
 		</>
 	)

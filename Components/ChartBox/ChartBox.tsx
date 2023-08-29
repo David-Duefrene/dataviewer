@@ -3,17 +3,20 @@ import type { Dispatch, SetStateAction } from 'react'
 
 import * as d3 from 'd3'
 
+import Title from '../UI/Title/Title'
+
 import ColorKey, { ColorRow } from './ColorKey/ColorKey'
 import LineChart from './LineChart'
 import { ChartBoxData, ChartData } from './types'
-
 import styles from './ChartBox.module.sass'
 
 interface ChartBoxProps {
-	data: ChartBoxData[],
+	data: ChartBoxData[]
+	title: string
+	lang?: Record<string, string>
 }
 
-const ChartBox = ({ data }: ChartBoxProps) => {
+const ChartBox = ({ data, title, lang }: ChartBoxProps) => {
 	const svgRef = React.useRef(null)
 
 	const [ width, setWidth ]: [number, Dispatch<SetStateAction<number>>] = useState(1500)
@@ -61,7 +64,7 @@ const ChartBox = ({ data }: ChartBoxProps) => {
 
 	return (
 		<article>
-
+			<Title page={title} opts={lang} />
 			<div className={styles.ChartArea}>
 				<ColorKey>{linesColors}</ColorKey>
 				<svg className={styles.Chart} ref={svgRef} width={width + 120} height={height * 1.1} />
