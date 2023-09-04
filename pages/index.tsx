@@ -1,20 +1,18 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
+import type { NextPage } from 'next'
+
 import styles from '../styles/index.module.sass'
-import Image from 'next/image'
-//Import populationLogo from '../'
 
 export const getStaticProps = async ({ locale }: { locale: string }) => {
 	return {
 		props: {
-			...await serverSideTranslations(locale, [
-				'chartList',
-			]),
+			...await serverSideTranslations(locale, [ 'chartList' ]),
 		},
 	}
 }
@@ -38,7 +36,12 @@ const Home: NextPage = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main className={styles.App}>
+			<hgroup>
+				<h1>Data Viewer App</h1>
+				<h2>Various charts generated from data.colorado.gov</h2>
+			</hgroup>
+
+			<main>
 				<nav className={styles.NavBar}>{charts}</nav>
 			</main>
 		</>
