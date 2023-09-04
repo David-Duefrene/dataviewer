@@ -1,0 +1,8 @@
+{
+	"title": "Data Viewer App",
+	"description": "Various charts generated from data.colorado.gov",
+	"chartList": {
+		"budget": "Budget",
+		"population": "Population"
+	}
+}
