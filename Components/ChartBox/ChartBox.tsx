@@ -67,7 +67,7 @@ const ChartBox = ({ data, title, lang }: ChartBoxProps) => {
 			<Title page={title} opts={lang} />
 			<div className={styles.ChartArea}>
 				<ColorKey>{linesColors}</ColorKey>
-				<svg className={styles.Chart} ref={svgRef} width={width + 120} height={height * 1.1} />
+				<svg className={styles.Chart} ref={svgRef} width={width + 120} height={Math.floor(height * 1.1)} />
 			</div>
 		</article>
 	)
