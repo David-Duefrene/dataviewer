@@ -7,17 +7,18 @@ import styles from './NavBar.module.sass'
 
 const CHARTLIST = [ 'population', 'budget' ] as const
 
-const NavBar = () => {
+const NavBar = (): JSX.Element => {
 	const { t } = useVariableInterpolation('common')
 
-	const charts = [
-		<Link key='0' className={styles.Link} href='/population'>
-			<Image src='/icons/population.svg' width='50' height='50' alt={t('chartList.population')} />{t('chartList.population')}
-		</Link>,
-		<Link key='1' className={styles.Link} href='/budget'>
-			<Image src='/icons/budget.svg' width='50' height='50' alt={t('chartList.budget')} />{t('chartList.budget')}
-		</Link>,
-	]
+	const charts: JSX.Element[] = CHARTLIST.map((chartName, index) => {
+		const tChartName = t(`chartList.${chartName}`)
+		return (
+			<Link key={`Chart-${index}-${chartName}`} className={styles.Link} href={`/${chartName}`}>
+				<Image src={`/icons/${chartName}.svg`} width='50' height='50' alt={tChartName} />
+				{tChartName}
+			</Link>
+		)
+	})
 
 	return <nav className={styles.NavBar}>{charts}</nav>
 }
