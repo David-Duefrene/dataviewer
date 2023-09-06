@@ -7,7 +7,7 @@ describe('ColorKey', () => {
 	afterEach(cleanup)
 
 	test('ColorKey renders blank with no children', () => {
-		render(<ColorKey />)
+		render(<ColorKey><ColorRow name='Test' color='red' /></ColorKey>)
 		const name = screen.getByText('Name')
 		const color = screen.getByText('Color')
 		expect(name.innerHTML).toBe('Name')

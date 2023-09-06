@@ -1,11 +1,9 @@
 import React from 'react'
 import {
-	vi, describe, afterEach, afterAll, it, expect,
+	vi, describe, afterEach, it, expect,
 } from 'vitest'
-import { render, screen, cleanup, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import ChartBox from './ChartBox'
-import { window } from 'd3'
-import { s } from 'vitest/dist/reporters-2ff87305'
 
 // Mock ThemeToggle
 vi.mock('../UI/ThemeToggle/ThemeToggle')
