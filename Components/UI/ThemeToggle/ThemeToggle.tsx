@@ -6,7 +6,7 @@ const ThemeToggle = () => {
 	const [ theme, setTheme ] = useState<'Dark' | 'Light'>('Light')
 
 	useEffect(() => {
-		if (window.matchMedia('(prefers-color-scheme: dark)')) {
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			setTheme('Dark')
 			document.documentElement.className = 'Dark'
 		}

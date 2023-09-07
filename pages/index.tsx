@@ -7,6 +7,7 @@ import useVariableInterpolation from '../util/useVariableInterpolation'
 import NavBar from '../Components/UI/NavBar/NavBar'
 
 import type { NextPage } from 'next'
+import ThemeToggle from '../Components/UI/ThemeToggle/ThemeToggle'
 
 export const getStaticProps = async ({ locale }: { locale: string }) => {
 	return {
@@ -33,6 +34,7 @@ const Home: NextPage = () => {
 			<hgroup>
 				<h1>{title}</h1>
 				<h2>{desc}</h2>
+				<ThemeToggle />
 			</hgroup>
 
 			<main>
