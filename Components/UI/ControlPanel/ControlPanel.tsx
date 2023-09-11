@@ -12,7 +12,7 @@ const ControlPanel = ({ children }: ControlPanelProps) => {
 
 	return (
 		<>
-			<button className={`${styles.CollapseButton}`} onClick={toggleCollapse} data-testid='collapse-button'>{isCollapsed ? '>' : '<'}</button>
+			<button className={`${styles.CollapseButton}`} onClick={toggleCollapse} >{isCollapsed ? '>' : '<'}</button>
 			<aside className={isCollapsed ? styles.Collapsed : styles.ControlPanel} data-testid='control-panel'>
 				<div className={`${isCollapsed ? styles.Collapsed : null}`}>{children}</div>
 			</aside>

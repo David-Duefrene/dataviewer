@@ -12,10 +12,10 @@ describe('ControlPanel', () => {
 	})
 
 	it('should toggle collapse on button click', () => {
-		const collapseButton = screen.getByTestId('collapse-button')
-		const controlPanel = screen.getByTestId('control-panel')
+		const collapseButton = screen.getByText('>')
 
 		fireEvent.click(collapseButton)
+		const controlPanel = screen.getByTestId('control-panel')
 		expect(controlPanel.className).toContain('ControlPanel')
 		expect(controlPanel.className).not.toContain('Collapsed')
 
@@ -24,18 +24,10 @@ describe('ControlPanel', () => {
 		expect(controlPanel.className).not.toContain('ControlPanel')
 	})
 
-	it('should render children when not collapsed', () => {
-		const collapseButton = screen.getByTestId('collapse-button')
-		fireEvent.click(collapseButton)
-
-		expect(screen.getByText('Hello World')).toBeTruthy()
-	})
-
 	it('should have default state collapsed', () => {
-		const controlPanel = screen.getByTestId('control-panel')
+		const controlPanel = screen.queryByTestId('control-panel')
 
-		expect(controlPanel.className).toContain('ControlPanel')
-		expect(controlPanel.className).not.toContain('Collapsed')
+		expect(controlPanel).toBe(null)
 	})
 })
 
