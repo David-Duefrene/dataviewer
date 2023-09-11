@@ -1,6 +1,6 @@
 import styles from './ColorKey.module.sass'
 
-const ColorKey = ({ children }: { children: JSX.Element[] | JSX.Element }) => {
+const ColorKey = ({ children }: { children?: JSX.Element[] | JSX.Element }) => {
 	return (
 		<div className={styles.ColorKey}>
 			{children}
