@@ -3,6 +3,20 @@ import { defineConfig, devices } from '@playwright/test'
 import dotenv from 'dotenv'
 dotenv.config()
 
+const LANG_LIST = [ 'en' ]
+type tLangProject = {
+	name: string,
+	use: { locale: string },
+}
+const generateLangTests = (list: string[]): tLangProject[] => {
+	return list.map((lang) => {
+		return {
+			name: lang,
+			use: { locale: lang },
+		}
+	})
+}
+
 // See https://playwright.dev/docs/test-configuration.
 export default defineConfig({
 	// Test Directory
@@ -44,6 +58,7 @@ export default defineConfig({
 		// Mobile browsers
 		{ name: 'Mobile Chrome', use: { ...devices['Pixel 5'] } },
 		{ name: 'Mobile Safari', use: { ...devices['iPhone 12'] } },
+		...generateLangTests(LANG_LIST),
 	],
 
 	webServer: { command: 'npm run start' },
