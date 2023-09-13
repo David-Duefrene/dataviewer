@@ -1,16 +1,24 @@
-import { test, expect } from '@playwright/test'
+import {
+	describe, beforeEach, expect, should,
+} from './playwright'
 
-test.describe('Homepage', () => {
-	const URL = '/'
-	test.beforeEach(async ({ page }) => {
-		await page.goto(URL)
+import common from '../../public/locales/en/common.json'
+
+describe('Homepage', () => {
+	beforeEach(async ({ page }) => {
+		await page.goto('/')
 	})
 
-	test('has title', async ({ page }) => {
-		await expect(page).toHaveTitle('Data Viewer App')
+	should('have a title in the browser tab', async ({ page }) => {
+		await expect(page).toHaveTitle(common.title)
 	})
 
-	test('get started link', async ({ page }) => {
-		await expect(page.getByRole('heading', { name: 'Data Viewer App' })).toBeVisible()
+	should('have the name of the app and the description', async ({ page }) => {
+		await expect(page.getByRole('heading', { name: common.title })).toBeVisible()
+		await expect(page.getByRole('heading', { name: common.description })).toBeVisible()
+	})
+
+	should('have a theme toggle', async ({ page }) => {
+		await expect(page.getByRole('button', { name: 'Light' })).toBeVisible()
 	})
 })
