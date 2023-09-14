@@ -34,4 +34,15 @@ describe('Homepage', async () => {
 		await expect(page.getByRole('link', { name: l('budget') })).toBeVisible()
 		await expect(page.getByRole('link', { name: l('population') })).toBeVisible()
 	})
+
+	// It should switch to dark mode when the theme toggle is clicked
+	should('switch to dark mode when the theme toggle is clicked', async ({ page }) => {
+		let themeToggle = page.getByRole('button', { name: 'Light' })
+		await themeToggle.click()
+		expect(page.getByText('Dark')).toBeTruthy()
+
+		themeToggle = page.getByRole('button', { name: 'Dark' })
+		await themeToggle.click()
+		expect(page.getByText('Light')).toBeTruthy()
+	})
 })
