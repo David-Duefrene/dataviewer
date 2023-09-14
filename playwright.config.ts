@@ -61,5 +61,5 @@ export default defineConfig({
 		...generateLangTests(LANG_LIST),
 	],
 
-	webServer: { command: 'npm run start' },
+	// WebServer: { command: 'npm run start' },
 })
