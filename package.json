@@ -6,7 +6,7 @@
 		"start": "next dev",
 		"serve": "next start",
 		"test": "vitest",
-		"pw": "playwright test",
+		"pw": "playwright test --ui",
 		"lint": "next lint"
 	},
 	"dependencies": {
