@@ -1,8 +1,21 @@
+import { ElementHandle } from '@playwright/test'
 import {
 	describe, beforeAll, beforeEach, expect, should,
 } from './playwright'
 import translate from './util/translate'
 import type { Translate } from './util/translate'
+
+type tElement = ElementHandle<HTMLElement | SVGElement>
+const checkStrokes = async (elements: tElement | tElement[] | undefined): Promise<void> => {
+	if (!elements) expect(elements).toBeTruthy()
+	else if (!Array.isArray(elements)) elements = [ elements ]
+
+	elements?.forEach(async (element: ElementHandle<HTMLElement | SVGElement>, index: number) => {
+		const strokeName = `var(--line-color-${index%10})`
+		const stroke = await element.getAttribute('stroke')
+		expect(stroke).toBe(strokeName)
+	})
+}
 
 describe('Population', async () => {
 	let p: Translate
@@ -41,11 +54,25 @@ describe('Population', async () => {
 		const paths = await svg?.$$('path')
 		expect(paths?.length).toBe(2)
 
-		const line0 = await paths?.[0].getAttribute('stroke')
-		expect(line0).toBe('var(--line-color-0)')
+		await checkStrokes(paths)
+	})
 
-		const line1 = await paths?.[1].getAttribute('stroke')
-		expect(line1).toBe('var(--line-color-1)')
+	should('render a svg with 3 paths', async ({ page }) => {
+		let collapseButton = page.getByText('>')
+		await collapseButton.click()
+
+		const tellerCounty = page.getByText('Teller')
+		await tellerCounty.click()
+		collapseButton = page.getByText('<')
+		await collapseButton.click()
+
+		const svg = await page.$('svg')
+		expect(svg).toBeTruthy()
+
+		const paths = await svg?.$$('path')
+		expect(paths?.length).toBe(3)
+
+		await checkStrokes(paths)
 	})
 })
 
