@@ -33,5 +33,19 @@ describe('Population', async () => {
 		expect(denver).toBeTruthy()
 		expect(elPaso).toBeTruthy()
 	})
+
+	should('render a svg with 2 paths', async ({ page }) => {
+		const svg = await page.$('svg')
+		expect(svg).toBeTruthy()
+
+		const paths = await svg?.$$('path')
+		expect(paths?.length).toBe(2)
+
+		const line0 = await paths?.[0].getAttribute('stroke')
+		expect(line0).toBe('var(--line-color-0)')
+
+		const line1 = await paths?.[1].getAttribute('stroke')
+		expect(line1).toBe('var(--line-color-1)')
+	})
 })
 
