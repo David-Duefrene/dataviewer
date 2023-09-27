@@ -72,7 +72,34 @@ describe('Population', async () => {
 		const paths = await svg?.$$('path')
 		expect(paths?.length).toBe(3)
 
+		const teller = page.getByText('Teller')
+		expect(teller).toBeTruthy()
+
 		await checkStrokes(paths)
+	})
+
+	should('render a svg with 12 paths', async ({ page }) => {
+		let button = page.getByText('>')
+		await button.click()
+
+		const countyList = [ 'Teller', 'Arapahoe', 'Jefferson', 'Douglas', 'Adams', 'Boulder', 'Broomfield', 'Clear Creek', 'Gilpin', 'Park' ]
+		for (let index = 0; index < 10; index++) {
+			button = page.getByText(countyList[index])
+			await button.click()
+		}
+
+		button = page.getByText('<')
+		await button.click()
+		const svg = await page.$('svg')
+		expect(svg).toBeTruthy()
+
+		const paths = await svg?.$$('path')
+		expect(paths?.length).toBe(12)
+
+		for (let index = 0; index < 10; index++) {
+			const key = page.getByText(countyList[index])
+			expect(key).toBeTruthy()
+		}
 	})
 })
 
