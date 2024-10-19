@@ -24,7 +24,7 @@
 		"@types/react": "18.2.36",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
-		"@vitejs/plugin-react": "4.0.4",
+		"@vitejs/plugin-react": "4.3.3",
 		"eslint": "^8.37.0",
 		"eslint-config-next": "^13.1.5",
 		"eslint-config-vigilant-octo-train": "^0.0.4",
